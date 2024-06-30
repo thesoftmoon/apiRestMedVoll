@@ -7,6 +7,9 @@ import med.voll.api.doctor.DoctorDTO;
 import med.voll.api.doctor.DoctorDataListDTO;
 import med.voll.api.doctor.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,9 +29,12 @@ public class DoctorController {
         doctorRepository.save(new Doctor(doctorDTO));
     }
 
+    /*Con Page y invocand Pageable, puedes agrupar la llamada en paginas, usando queries de url como /doctors?size=2mlo que acorta los datos a dos entradas en este caso*/
+
+    /*Con pageabledefault y size podemos modificar las entradas que se muestran por default*/
     @GetMapping
-    public List<DoctorDataListDTO> doctorList(){
-        return doctorRepository.findAll().stream().map(DoctorDataListDTO::new).toList();
+    public Page<DoctorDataListDTO> doctorList(@PageableDefault(size = 2) Pageable paginacion){
+        return doctorRepository.findAll(paginacion).map(DoctorDataListDTO::new);
     }
 
 }
