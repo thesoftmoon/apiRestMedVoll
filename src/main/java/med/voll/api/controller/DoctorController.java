@@ -1,11 +1,9 @@
 package med.voll.api.controller;
 
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import med.voll.api.doctor.Doctor;
-import med.voll.api.doctor.DoctorDTO;
-import med.voll.api.doctor.DoctorDataListDTO;
-import med.voll.api.doctor.DoctorRepository;
+import med.voll.api.doctor.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,8 +31,30 @@ public class DoctorController {
 
     /*Con pageabledefault y size podemos modificar las entradas que se muestran por default*/
     @GetMapping
-    public Page<DoctorDataListDTO> doctorList(@PageableDefault(size = 2) Pageable paginacion){
-        return doctorRepository.findAll(paginacion).map(DoctorDataListDTO::new);
+    public Page<DoctorDataListDTO> doctorList(@PageableDefault(size = 5) Pageable paginacion){
+        return doctorRepository.findByActiveTrue(paginacion).map(DoctorDataListDTO::new);
     }
+
+    /*Sin el Transactional los datos no se actualizan, esto abre una transaccion en la base de datos y deja actualizar, esto es JPA puro, no se usa el repository.dave() para guardar la data*/
+    @PutMapping
+    @Transactional
+    public void doctorUpdate(@RequestBody @Valid DoctorDataUpdateDTO doctorDataUpdateDTO){
+        Doctor doctor = doctorRepository.getReferenceById(doctorDataUpdateDTO.id());
+        doctor.updateData(doctorDataUpdateDTO);
+    }
+
+    //Delete logico
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void deleteDoctor(@PathVariable Long id){
+        Doctor doctor = doctorRepository.getReferenceById(id);
+        doctor.deactivateDoctor();
+    }
+
+    //Este es el delete en base de datos
+   /* public void deleteDoctor(@PathVariable Long id){
+        Doctor doctor = doctorRepository.getReferenceById(id);
+        doctorRepository.delete(doctor);
+    }*/
 
 }

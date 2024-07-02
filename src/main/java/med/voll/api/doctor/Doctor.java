@@ -24,6 +24,16 @@ public class Doctor {
     private String email;
     private String telefono;
     private String documento;
+    private Boolean active;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Enumerated(EnumType.STRING)
     private Especialidad especialidad;
     @Embedded
@@ -82,7 +92,25 @@ public class Doctor {
         this.email = doctorDTO.email();
         this.telefono = doctorDTO.telefono();
         this.documento = doctorDTO.documento();
+        this.active = true;
         this.especialidad = doctorDTO.especialidad();
         this.direccion = new Adress(doctorDTO.direccion());
+    }
+
+    public void updateData(DoctorDataUpdateDTO doctorDataUpdateDTO) {
+
+        if (doctorDataUpdateDTO.nombre() != null) {
+            this.nombre = doctorDataUpdateDTO.nombre();
+        }
+        if (doctorDataUpdateDTO.documento() != null) {
+            this.documento = doctorDataUpdateDTO.documento();
+        }
+        if (doctorDataUpdateDTO.adress() != null) {
+            this.direccion = direccion.updateData(doctorDataUpdateDTO.adress());
+        }
+    }
+
+    public void deactivateDoctor() {
+        this.active = false;
     }
 }

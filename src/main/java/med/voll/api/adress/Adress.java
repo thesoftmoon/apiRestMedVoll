@@ -25,4 +25,13 @@ public class Adress {
         this.numero = direccion.numero();
         this.complemento = direccion.complemento();
     }
+
+    public Adress updateData(AdressDTO adress) {
+        this.calle = adress.calle();
+        this.distrito = adress.distrito();
+        this.ciudad = adress.ciudad();
+        this.numero = adress.numero();
+        this.complemento = adress.complemento();
+        return this;
+    }
 }
