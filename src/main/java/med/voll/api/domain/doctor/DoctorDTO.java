@@ -1,4 +1,4 @@
-package med.voll.api.doctor;
+package med.voll.api.domain.doctor;
 
 
 import jakarta.validation.Valid;
@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import med.voll.api.adress.AdressDTO;
+import med.voll.api.domain.adress.AdressDTO;
 
 /*Las anotaciones @NotBlank valida si es un campo vacio o nulo, @NotNull valida solo si es nulo, esto va activado en el controller, con la anotacion @Valid*/
 

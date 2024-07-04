@@ -1,7 +1,6 @@
-package med.voll.api.doctor;
+package med.voll.api.domain.doctor;
 
-import med.voll.api.adress.Adress;
-import med.voll.api.adress.AdressDTO;
+import med.voll.api.domain.adress.AdressDTO;
 
 public record DoctorResponseDTO(Long id,
                                 String nombre,

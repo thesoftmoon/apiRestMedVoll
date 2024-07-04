@@ -1,4 +1,4 @@
-package med.voll.api.doctor;
+package med.voll.api.domain.doctor;
 
 public record DoctorDataListDTO(Long id, String nombre, String especialidad, String  documento, String email) {
 

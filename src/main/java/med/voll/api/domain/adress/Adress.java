@@ -1,8 +1,7 @@
-package med.voll.api.adress;
+package med.voll.api.domain.adress;
 
 
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.Embedded;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
