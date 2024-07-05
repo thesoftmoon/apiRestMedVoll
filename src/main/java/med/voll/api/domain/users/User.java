@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-/*Usa id para comparar entre doctors*/
 @EqualsAndHashCode(of = "id")
 public class User {
     @Id
