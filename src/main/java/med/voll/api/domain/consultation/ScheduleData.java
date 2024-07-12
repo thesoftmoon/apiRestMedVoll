@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public record ScheduleData(
         Long id,
         @NotNull
-        Long idPatient,
+        Long idPaciente,
         Long idDoctor,
         @NotNull
         @Future

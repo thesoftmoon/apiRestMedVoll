@@ -1,4 +1,4 @@
-package med.voll.api.domain.Patient;
+package med.voll.api.domain.paciente;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,7 @@ import med.voll.api.domain.adress.Adress;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Patient {
+public class Paciente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +31,7 @@ public class Patient {
 
     private Boolean activo;
 
-    public Patient(DatosRegistroPaciente datos) {
+    public Paciente(DatosRegistroPaciente datos) {
         this.activo = true;
         this.nombre = datos.nombre();
         this.email = datos.email();
